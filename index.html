@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" conetnt="device-width, intial-scale=1.0" />
+    <title>Server side events</title>
+  </head>
+  <body>
+    <h1>Server side events</h1>
+    <div id="sse-data"></div>
+    <script>
+      const sseContainer = document.getElementById("sse-data");
+      // * setup sse connection
+      const eventSource = new EventSource("/sse"); //* EventSource provided by browser
+      eventSource.onmessage = (event) => {
+        const update = document.createElement("p");
+        update.textContent = event.data;
+        sseContainer.appendChild(update);
+      };
+    </script>
+  </body>
+</html>
